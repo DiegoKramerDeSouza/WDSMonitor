@@ -247,7 +247,7 @@
 				<li><a href='#!' class='tooltipped btn-floating green darken-2 white-text' data-position='left' data-delay='50' data-tooltip='Gerenciar Imagens' onclick='callData("gerenciar", "imagem")'><i class='fa fa-th-large'></i></a></li>
 				<li><a href='#!' class='tooltipped btn-floating green darken-2 white-text' data-position='left' data-delay='50' data-tooltip='Gerenciar Ciclos' onclick='callData("gerenciar", "ciclo")'><i class='fa fa-table'></i></a></li>
 				-->
-				<li><a href='#chartSlide_setor' class='tooltipped btn-floating green darken-2 white-text modal-trigger' data-position='left' data-delay='50' data-tooltip='Monitorar Setores' onclick='callModalSlider()'><i class='fa fa-cubes'></i></a></li>
+				<li><a href='#!' class='tooltipped btn-floating green darken-2 white-text' data-position='left' data-delay='50' data-tooltip='Monitorar Setores' onclick='callData("monitorar", "setor")'><i class='fa fa-cubes'></i></a></li>
 				<li><a href='#!' class='tooltipped btn-floating green darken-2 white-text' data-position='left' data-delay='50' data-tooltip='Monitorar Ciclos' onclick='callData("monitorar", "ciclo")'><i class='fa fa-calendar'></i></a></li>
 			</ul>
 		</div>

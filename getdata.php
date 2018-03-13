@@ -72,7 +72,7 @@
 					$setorcreat = $descDate . " às " . $descTime;
 					$html = $html . 
 									"<div id='" . $setorId . "_scard' class='col s12 m6 setorCard'>".
-										"<div id='" . $setorId . "_scard_body' class='card space light-green-text' style='border: 1px solid rgba(12,12,0,0.5)'>".
+										"<div id='" . $setorId . "_scard_body' class='grey darken-4 space light-green-text' style='border: 1px solid rgba(12,12,0,0.5)'>".
 											"<div class='card-content'>".
 											
 												"<span class='card-title'>".
@@ -110,7 +110,7 @@
 														"<span class='fa fa-edit fa-lg light-green-text' title='Editar Setor'></span>".
 													"</a>".
 													"<a href='#!' onclick='deleteSetor(\"" . $setorId . "\")'>".
-														"<span class='fa fa-times fa-lg red-text text-accent-3' title='Deletar Setor'></span>".
+														"<span class='fa fa-times fa-lg red-text text-darken-3' title='Deletar Setor'></span>".
 													"</a>".
 												"</div>";
 										}
@@ -190,7 +190,7 @@
 					$html = $html . 
 								"<div id='listHardware'>".
 									"<div id='" . $hdwId . "_scard' class='col s12 m6 setorCard'>".
-										"<div id='" . $hdwId . "_scard_body' class='card space light-green-text' style='border: 1px solid rgba(12,12,0,0.5)'>".
+										"<div id='" . $hdwId . "_scard_body' class='card grey darken-4 space light-green-text' style='border: 1px solid rgba(12,12,0,0.5)'>".
 											"<div class='card-content'>".
 											
 												"<p class='truncate md green-text text-darken-2'>".
@@ -210,7 +210,7 @@
 													"<span class='fa fa-edit fa-lg light-green-text' title='Editar Hardware'></span>".
 												"</a>".
 												"<a href='#!' onclick='deleteHdw(\"" . $hdwId . "\")'>".
-													"<span class='fa fa-times fa-lg red-text text-accent-3' title='Deletar Hardware'></span>".
+													"<span class='fa fa-times fa-lg red-text text-darken-3' title='Deletar Hardware'></span>".
 												"</a>".
 											"</div>";
 									}
@@ -286,7 +286,7 @@
 											sort($hardwareData);
 											foreach($hardwareData as $hdw){
 												$html = $html.
-												"<option value='" . $hdw[0] . "'>" . $hdw[1] . "</option>";
+												"<option value='" . $hdw[0] . "'>" . $hdw[1] . " [" . $hdw[2] . "]" . "</option>";
 											}
 									$html = $html.
 										"</select>".
@@ -333,7 +333,7 @@
 					
 					$html = $html . 
 									"<div id='" . $imgdataId . "_scard' class='col s12 m6 setorCard'>".
-										"<div id='" . $imgdataId . "_scard_body' class='card space light-green-text' style='border: 1px solid rgba(12,12,0,0.5)'>".
+										"<div id='" . $imgdataId . "_scard_body' class='card grey darken-4 space light-green-text' style='border: 1px solid rgba(12,12,0,0.5)'>".
 											"<div class='card-content'>".
 											
 												"<span class='card-title' title='" . $imgName . "'>".
@@ -372,7 +372,7 @@
 													"<span class='fa fa-edit fa-lg green-text' title='Editar Imagem'></span>".
 												"</a>".
 												"<a href='#!' onclick='deleteImagem(\"" . $imgdataId . "\", \"" . $imgsetorId . "\", \"" . $imghdwId . "\")'>".
-													"<span class='fa fa-times fa-lg red-text text-accent-3' title='Deletar Imagem'></span>".
+													"<span class='fa fa-times fa-lg red-text text-darken-3' title='Deletar Imagem'></span>".
 												"</a>".
 											"</div>";
 										}
@@ -501,7 +501,7 @@
 
 					$html = $html . 
 									"<div id='" . $cicId . "_scard' class='col s12 cicloCard'>".
-										"<div id='" . $cicId . "_scard_body' class='card space light-green-text' style='border: 1px solid rgba(12,12,0,0.5)'>".
+										"<div id='" . $cicId . "_scard_body' class='card grey darken-4 space light-green-text' style='border: 1px solid rgba(12,12,0,0.5)'>".
 											"<div class='card-content'>".
 												
 												"<span class='card-title'><span class='fa fa-th-large'></span> <b>" . $cicName . "</b></span>".
@@ -547,7 +547,7 @@
 													"<span class='fa fa-edit fa-lg light-green-text' title='Editar Ciclo'></span>".
 												"</a>".
 												"<a href='#!' onclick='deleteCiclo(\"" . $cicId . "\", \"" . $cicdatacicId . "\")'>".
-													"<span class='fa fa-times fa-lg red-text text-accent-3' title='Deletar Ciclo'></span>".
+													"<span class='fa fa-times fa-lg red-text text-darken-3' title='Deletar Ciclo'></span>".
 												"</a>".
 											"</div>";
 										}
@@ -677,24 +677,30 @@
 			echo json_encode($values, JSON_PRETTY_PRINT);
 			
 		} elseif($_POST['page'] == "monitorar" && $_POST['target'] == "todos-setores"){
-			//$operacao = getAllData("operacao");
-			//$operacaodata = getAllData("operacaodata");
-			$operacoes = $_SESSION['setores'];
+			$operacao = getAllData("operacao");
+			$operacaodata = getAllData("operacaodata");
+			
+			//$operacoes = $_SESSION['setores'];
 			$operacaoList = array();
 			$html = "";
-			for($i=0; $i<count($operacoes); $i++){
-				// $operacao[$i][0] . "|" . $operacao[$i][1] . "|" . $base
+			for($i=0; $i<count($operacao); $i++){
+				/*
 				$setores = explode("|", $operacoes[$i]);
 				$setorId = $setores[0];
 				$setorName = $setores[1];
 				$setorDN = $setores[2];
+				*/
+				
+				$setorId = $operacao[$i][0];
+				$setorName = $operacao[$i][1];
+				$setorDN = $operacaodata[$i][4];
+				
 				$html = $html.
 						"<div class='carousel-item'>".
 							"<div class='row'>".
 								"<div class='col s12' align='center' style='margin-Bottom:50px;'>".
 									//"<p>". memory_get_usage() . "</p>".
-									"<h3 class='green-text text-darken-3'><b><span class='fa fa-cubes'></span> Monitoria de setor:</b></h3>".
-									"<h3 class='green-text text-darken-2' title='" . $setorName . "'><u>" . $setorName . "</u></h3>".
+									"<h3 class='green-text text-darken-3' title='" . $setorName . "'><b><span class='fa fa-cube'></span> " . $setorName . "</b></h3>".
 								"</div>".
 								
 								"<div class='col s12 m6'>".
@@ -719,9 +725,9 @@
 			$menubar = "<div class='col s12' id='sliderControl'>".
 							"<div class='card center grey lighten-3'>".
 								"<div class='card-content'>".
-									"<a href='index.php' title='Parar Monitoria' class='waves-effect waves-light paddingBtn green-text text-darken-1' onclick='closeSlide()'><i class='fa fa-stop-circle fa-3x'></i></a> ".
-									"<a href='#!' title='Iniciar Monitoria' class='waves-effect waves-light paddingBtn green-text text-darken-1' onclick='playSlide()'><i class='fa fa-play-circle fa-4x'></i></a> ".
-									"<a href='#!' title='Pausar Monitoria' class='waves-effect waves-light paddingBtn green-text text-darken-1' onclick='pauseSlide()'><i class='fa fa-pause-circle fa-3x'></i></a> ".
+									"<a href='index.php' title='Parar Monitoria' class='waves-effect waves-light paddingBtn green-text text-darken-1' onclick='closeSlide()'><i class='fa fa-stop fa-2x'></i></a> ".
+									"<a href='#!' title='Iniciar Monitoria' class='waves-effect waves-light paddingBtn green-text text-darken-1' onclick='playSlide()'><i class='fa fa-play fa-2x'></i></a> ".
+									"<a href='#!' title='Pausar Monitoria' class='waves-effect waves-light paddingBtn green-text text-darken-1' onclick='pauseSlide()'><i class='fa fa-pause fa-2x'></i></a> ".
 								"</div>".
 							"</div>".
 						"</div>";
@@ -940,7 +946,7 @@
 									"</div>".
 									"<div class='input-field col s12' align='center'>".
 										"<span class='btn-large green darken-3 waves-effect waves-light white-text' onclick='changeSetor(\"" . $editId . "\")' style='width:80%;'><span class='fa fa-floppy-o'></span> Salvar Alterações</span>".
-										"<span class='btn-large btn-flat waves-effect waves-red red-text text-darken-2' onclick='callData(\"gerenciar\", \"operacoes\")' style='width:80%;'><span class='fa fa-times'></span> Descartar Alterações</span>".
+										"<span class='btn-large btn-flat waves-effect waves-red red-text text-darken-3' onclick='callData(\"gerenciar\", \"operacoes\")' style='width:80%;'><span class='fa fa-times'></span> Descartar Alterações</span>".
 									"</div>".
 								"</div>".	
 							"</div>".	
@@ -983,7 +989,7 @@
 									"</div>".
 									"<div class='input-field col s12' align='center'>".
 										"<span class='btn-large green darken-3 waves-effect waves-light white-text' onclick='changeHdw(\"" . $editId . "\")' style='width:80%;'><span class='fa fa-floppy-o'></span> Salvar Alterações</span>".
-										"<span class='btn-large btn-flat waves-effect waves-red red-text text-darken-2' onclick='callData(\"gerenciar\", \"hardware\")' style='width:80%;'><span class='fa fa-times'></span> Descartar Alterações</span>".
+										"<span class='btn-large btn-flat waves-effect waves-red red-text text-darken-3' onclick='callData(\"gerenciar\", \"hardware\")' style='width:80%;'><span class='fa fa-times'></span> Descartar Alterações</span>".
 									"</div>".
 								"</div>".	
 							"</div>".	
@@ -1034,7 +1040,7 @@
 													$selected = "selected";
 												}
 												$html = $html.
-												"<option value='" . $hdw[0] . "' " . $selected . ">" . $hdw[1] . "</option>";
+												"<option value='" . $hdw[0] . "' " . $selected . ">" . $hdw[1] . " [" . $hdw[2] . "]" . "</option>";
 											}
 									$html = $html.
 										"</select>".
@@ -1051,7 +1057,7 @@
 									
 									"<div class='input-field col s12' align='center'>".
 										"<span class='btn-large green darken-3 waves-effect waves-light white-text' onclick='changeImagem(\"" . $editId . "\", \"" . $editsetorId . "\", \"" . $edithdwId . "\")' style='width:80%;'><span class='fa fa-floppy-o'></span> Salvar Alterações</span>".
-										"<span class='btn-large btn-flat waves-effect waves-red red-text text-darken-2' onclick='callData(\"gerenciar\", \"imagem\")' style='width:80%;'><span class='fa fa-times'></span> Descartar Alterações</span>".
+										"<span class='btn-large btn-flat waves-effect waves-red red-text text-darken-3' onclick='callData(\"gerenciar\", \"imagem\")' style='width:80%;'><span class='fa fa-times'></span> Descartar Alterações</span>".
 									"</div>".
 								"</div>".	
 							"</div>".	
@@ -1124,7 +1130,7 @@
 									
 									"<div class='input-field col s12' align='center'>".
 										"<span class='btn-large green darken-3 waves-effect waves-light white-text' onclick='changeCiclo(\"" . $editId . "\", \"" . $editDataId . "\")' style='width:80%;'><span class='fa fa-floppy-o'></span> Salvar Alterações</span>".
-										"<span class='btn-large btn-flat waves-effect waves-red red-text text-darken-2' onclick='callData(\"gerenciar\", \"ciclo\")' style='width:80%;'><span class='fa fa-times'></span> Descartar Alterações</span>".
+										"<span class='btn-large btn-flat waves-effect waves-red red-text text-darken-3' onclick='callData(\"gerenciar\", \"ciclo\")' style='width:80%;'><span class='fa fa-times'></span> Descartar Alterações</span>".
 									"</div>".
 								"</div>".	
 							"</div>".	
