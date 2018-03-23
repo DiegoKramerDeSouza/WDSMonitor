@@ -41,7 +41,7 @@
 								<div class="col s6" >
 									<span class="card-title light-green-text text-accent-4" style="font-size:36px;">Login</span>
 								</div>
-								<div class="col s6" style="border-left: 1px solid rgba(80,80,80,0.2);">
+								<div class="col s6" style="border-left: 1px solid rgba(150,150,150,0.2);">
 									<div class="input-field" style="max-height:45px;">
 										<input type="text" autocomplete="off" class="validade input-block-level green-text" name="user" id="user" required autofocus />
 										<label class="active" for="user"><span class="fa fa-user fa-lg"></span> Usuário</label>
@@ -54,7 +54,7 @@
 							</div>
 						</div>
 						<div class="card-action blue-grey darken-2" align="right" style="max-height:60px;">
-							<b><input type="submit" class="green-text waves-effect waves-green btn-flat" style="opacity:1.0; position:relative; right:-20px;" id="Acessar" value="Acessar" /></b>
+							<input type="submit" class="light-green-text text-accent-4 waves-effect waves-green btn-flat" id="Entrar" value="Entrar" />
 						</div>
 					</form>
 				</div>

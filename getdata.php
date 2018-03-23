@@ -562,7 +562,7 @@
 			$operacao = getAllData("operacao");
 			$operacaodata = getAllData("operacaodata");
 			$operacaoList = array();
-			$html = "";
+			$html = "<div class='divider'></div><br />";
 			for($i = 0; $i < count($operacaodata); $i++){
 				$base = $operacaodata[$i][4];
 				$html =	$html .
@@ -581,19 +581,24 @@
 				array_push($operacaoList, $operacao[$i][0] . "|" . $operacao[$i][1] . "|" . $base);
 			}
 			$_SESSION['setores'] = $operacaoList;
-			$htmlHeader = 	"<h3 class='green-text text-darken-3 truncate' title='Monitorar Setores'><span class='fa fa-cubes'></span> <b>Monitorar Setores</b></h3>".
-							"<div class='divider'></div>";
+			$htmlHeader = 	"<div class='row'>".
+								"<div class='col s12 m6'>".
+									"<h3 class='green-text text-darken-3 truncate' title='Monitorar Setores'><span class='fa fa-pie-chart'></span> <b>Monitorar Setores</b></h3>".
+								"</div>";
 								
 			if(count($operacaodata) < 1){
-				$html = "<div align='center'>".
+				$html = "<div class='divider'></div><br />".
+						"<div align='center'>".
 							"<h5 class='red-text text-darken-3'><i class='fa fa-times'></i> Não há setores cadastrados!</h5>".
 						"</div>";
 			} else {
 				$htmlHeader = $htmlHeader . 
-								"<div class='col s12' align='center' style='padding:10px;'>".
-									"<a href='#chartSlide_setor' style='width:100%;' onclick='callModalSlider()' class='btn btn-large grey darken-4 amber-text text-darken-1 waves-light waves-effect modal-trigger'><b><i class='fa fa-pie-chart'></i> Monitorar setores</b></a>".
+									"<div class='col s12 m6' align='right' style='padding:10px;'>".
+										"<a href='#chartSlide_setor' onclick='callModalSlider()' class='btn btn-large grey darken-4 green-text text-darken-2 waves-green waves-effect modal-trigger'><b><i class='fa fa-cubes light-green-text'></i> Visualizar setores</b></a>".
+									"</div>".
 								"</div>";
 			}
+			
 			$html = $htmlHeader . $html;
 			echo utf8_encode($html);
 			
@@ -1104,7 +1109,7 @@
 									"</div>".
 									"<div class='input-field col s12' id='editdivCICimg'>".
 										"<i class='fa fa-th-large fa-lg prefix grey-text text-darken-3'></i>".
-										"<select multiple id='CICimg' name='CICimg' disabled>";
+										"<select multiple id='CICimg' name='CICimg light-green-text' disabled>";
 											for($j = 1; $j < count($expImagens); $j++){
 												$dataCIC = explode('|', $expImagens[$j], 2);
 												$result = collectImagem($dataCIC[0], $dataCIC[1]);

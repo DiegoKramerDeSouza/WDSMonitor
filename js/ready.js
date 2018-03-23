@@ -84,13 +84,13 @@ function moveSlide(move){
 	autoplay();
 }
 function playSlide(){
-	$toastContent = $('<span class="green-text text-darken-1"><i class="fa fa-play fa-lg"></i> <b>Monitoria iniciada!</b></span>');
-	Materialize.toast($toastContent, 1000, 'grey darken-4');
+	$toastContent = $('<span class="white-text"><i class="fa fa-play fa-lg"></i> <b>Monitoria iniciada!</b></span>');
+	Materialize.toast($toastContent, 1000, 'green darken-1');
 	autoplay();
 }
 function pauseSlide(){
-	$toastContent = $('<span class="amber-text"><i class="fa fa-pause fa-lg"></i> <b>Monitoria parada!</b></span>');
-	Materialize.toast($toastContent, 1000, 'grey darken-4');
+	$toastContent = $('<span class="white-text"><i class="fa fa-pause fa-lg"></i> <b>Monitoria parada!</b></span>');
+	Materialize.toast($toastContent, 1000, 'amber darken-1');
 	clearInterval(autoplayInterval);
 }
 function closeSlide(){
@@ -350,8 +350,13 @@ function loadGraph(target, obj, data, status, id){
 							blue = Math.floor((Math.random() * 150) + 20);
 							red = Math.floor((Math.random() * 150) + 20);
 							green = Math.floor((Math.random() * 150) + 20);
-							color[$j] = "color:rgba("+red+","+green+","+blue+",1);";
 							chartData.labels[$j] = obj[$j].split(":")[0];
+							if(chartData.labels[$j] == "Sem Imagem"){
+								red = 200;
+								green = 10;
+								blue = 10;
+							}
+							color[$j] = "color:rgba("+red+","+green+","+blue+",1);";
 							chartData.datasets[0].data[$j] = obj[$j].split(":")[1];
 							chartData.datasets[0].backgroundColor[$j] = "rgba("+red+","+green+","+blue+",1)";
 							chartData.datasets[0].hoverBackgroundColor[$j] = "rgba("+red+","+green+","+blue+",0.9)";
@@ -384,20 +389,22 @@ function loadGraph(target, obj, data, status, id){
 											"</div>";
 						for(var $i = 0; $i < chartData.labels.length; $i++){
 							bg = "transparent";
+							countColor = "green";
 							if($i%2 == 0){
 								bg = "rgba(200,250,200,0.8)";
 							}
 							spliting = chartData.labels[$i].split("|")[1];
 							if(spliting == "NR"){
 								chartData.labels[$i] = chartData.labels[$i].split("|")[0];
-								response = 		"<div class='col s10 red-text text-darken-3'>"+
+								response = 		"<div class='col s10 grey-text text-darken-3'>"+
 													"<span class='fa fa-exclamation-circle' style='" + color[$i] + "'></span><span title='Imagem não registrada no sistema!'>" + chartData.labels[$i] + "</span>:"+
 												"</div>";
 							} else {
 								if(chartData.labels[$i] == "Sem Imagem"){
 									response = 	"<div class='col s10'>"+
-													"<span class='fa fa-circle' style='" + color[$i] + "'></span><span class='grey-text text-darken-2'>" + chartData.labels[$i] + ":</span>"+
+													"<span class='fa fa-circle' style='" + color[$i] + "'></span><span class='red-text text-darken-3'>" + chartData.labels[$i] + ":</span>"+
 												"</div>";
+									countColor = "red";
 								} else {
 									response = 	"<div class='col s10'>"+
 													"<span class='fa fa-circle' style='" + color[$i] + "'></span>" + chartData.labels[$i] + ":"+
@@ -408,7 +415,7 @@ function loadGraph(target, obj, data, status, id){
 							datainsert+= "<div class='col s12' style='background-color:" + bg + "'>"+
 											response +
 											"<div class='col s2'>"+
-												"<span class='green-text text-darken-3'><b>" + chartData.datasets[0].data[$i] + "</b></span>"+
+												"<span class='"+countColor+"-text text-darken-3'><b>" + chartData.datasets[0].data[$i] + "</b></span>"+
 											"</div>"+
 										"</div>";
 							total += parseInt(chartData.datasets[0].data[$i]);
@@ -417,10 +424,13 @@ function loadGraph(target, obj, data, status, id){
 						datainsert+= 	"<hr noshaede />"+
 										"<div class='col s12'>"+
 											"<div class='col s10 green-text text-darken-3'>"+
-												"<b><i class='fa fa-hdd-o'></i> Total de Hardware: </b>"+
+												"<b><i class='fa fa-hdd-o fa-lg'></i> Total de Hardware: </b>"+
 											"</div>"+
 											"<div class='col s2 green-text text-darken-3'>"+
 												"<b>" + total + "</b>"+
+											"</div>"+
+											"<div class='col s12'>"+
+												"<span class='grey-text sm'><i class='fa fa-exclamation-circle'></i> Representa imagens não cadastradas no WDSMonitor.</span>"+
 											"</div>"+
 										"</div>"+
 									"</div>";

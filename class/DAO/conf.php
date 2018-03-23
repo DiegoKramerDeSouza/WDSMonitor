@@ -1,6 +1,6 @@
 <?php
-	define('STRUSER', "FkbWlu");
-	define('STRPASS', "TcwM0AhIQ==");
+	define('STRUSER', "d2ViQ09ERTAwMDAxQXBw");
+	define('STRPASS', "d2ViQ09");
 	define('STRDB', "wdsmonitor");
 	define('STRPATH', "localhost");
 ?>

@@ -39,9 +39,12 @@
 							</a>
 						</li>
 						<li>
+							<a href="#!" onclick='callData("monitorar", "setor")'><span class='green-text text-darken-1'><span class='fa fa-pie-chart fa-lg'></span> <b>Monitorar</b></span></a>
+							<!--
 							<a class='dropdown-button' id='monDrop' href='#!' data-activates='dropMon'>
 								<b><span class='green-text text-darken-1'><span class='fa fa-pie-chart fa-lg'></span> Monitorar</span></b>
 							</a>
+							-->
 						</li>
 						<li>
 							<a class='dropdown-button' id='gerDrop' href='#!' data-activates='dropGer'>
@@ -60,7 +63,7 @@
 					</ul>
 				</div>		
 				<ul id='myProfile' class='dropdown-content' style='margin-top:60px;'>
-					<li class='grey darken-4'><a href='#!' onclick='logoff()' class='red-text text-darken-1'><i class='fa fa-sign-out fa-lg'></i> Sair</a></li>
+					<li class='grey darken-4'><a href='#!' onclick='logoff()' class='red-text text-darken-3'><i class='fa fa-sign-out fa-lg'></i> <b>Sair</b></a></li>
 				</ul>
 				<ul id='dropGer' class='dropdown-content' style='margin-top:60px;'>
 					<li class='grey darken-4'><a href='#' class='green-text text-darken-1' onclick='callData("gerenciar", "operacoes")'><i class='fa fa-cube'></i>Setores</a></li>
@@ -68,10 +71,12 @@
 					<li class='grey darken-4'><a href='#' class='green-text text-darken-1' onclick='callData("gerenciar", "imagem")'><i class='fa fa-th-large'></i>Imagens</a></li>
 					<li class='grey darken-4'><a href='#' class='green-text text-darken-1' onclick='callData("gerenciar", "ciclo")'><i class='fa fa-table'></i>Ciclos</a></li>
 				</ul>
+				<!--
 				<ul id='dropMon' class='dropdown-content' style='margin-top:60px;'>
 					<li class='grey darken-4'><a href='#' class='green-text text-darken-1' onclick='callData("monitorar", "setor")'><i class='fa fa-cubes'></i>Setores</a></li>
 					<li class='grey darken-4'><a href='#' class='green-text text-darken-1' onclick='callData("monitorar", "ciclo")'><i class='fa fa-calendar'></i>Ciclos</a></li>
 				</ul>
+				-->
 			</nav>
 		</header>
 		
@@ -114,13 +119,16 @@
 						</div>
 					</li>
 					<li>
-						<div class='collapsible-header'>
+						
+						<div class='collapsible-header' onclick='callData("monitorar", "setor")'>
 							<span class='md'><span class='fa fa-pie-chart'></span> <b>Monitorar</b></span>
 						</div>
+						<!--
 						<div class='collapsible-body green darken-1' style='padding:0px;'>
 							<a href='#!' class=' white-text' onclick='callData("monitorar", "setor")'><span class='fa fa-cubes'></span>Setores</a>
 							<a href='#!' class=' white-text' onclick='callData("monitorar", "ciclo")'><span class='fa fa-calendar'></span>Ciclos</a>
 						</div>
+						-->
 					</li>
 					<li>
 						<div class='collapsible-header'>
@@ -135,7 +143,7 @@
 					</li>
 					<li>
 						<div class='collapsible-header' onclick='logoff()'>
-							<span class='green-text text-darken-2 md'><span class='fa fa-sign-out'></span> <b>Sair</b></span>
+							<span class='red-text text-darken-3 md'><span class='fa fa-sign-out'></span> <b>Sair</b></span>
 						</div>
 					</li>
 				</ul>
@@ -241,14 +249,17 @@
 				<i class='material-icons large'>apps</i>
 			</a>
 			<ul>
-				<li><a href='index.php' class='tooltipped btn-floating green darken-2 white-text' data-position='left' data-delay='50' data-tooltip='Início'><i class='fa fa-home'></i></a></li>
+				<li><a href='index.php' class='tooltipped btn-floating light-green darken-2 white-text' data-position='left' data-delay='50' data-tooltip='Início'><i class='fa fa-home'></i></a></li>
 				<!--<li><a href='#!' class='tooltipped btn-floating green darken-2 white-text' data-position='left' data-delay='50' data-tooltip='Gerenciar Setores' onclick='callData("gerenciar", "operacoes")'><i class='fa fa-cube'></i></a></li>
 				<li><a href='#!' class='tooltipped btn-floating green darken-2 white-text' data-position='left' data-delay='50' data-tooltip='Gerenciar Hardware' onclick='callData("gerenciar", "hardware")'><i class='fa fa-hdd-o'></i></a></li>
 				<li><a href='#!' class='tooltipped btn-floating green darken-2 white-text' data-position='left' data-delay='50' data-tooltip='Gerenciar Imagens' onclick='callData("gerenciar", "imagem")'><i class='fa fa-th-large'></i></a></li>
 				<li><a href='#!' class='tooltipped btn-floating green darken-2 white-text' data-position='left' data-delay='50' data-tooltip='Gerenciar Ciclos' onclick='callData("gerenciar", "ciclo")'><i class='fa fa-table'></i></a></li>
 				-->
-				<li><a href='#!' class='tooltipped btn-floating green darken-2 white-text' data-position='left' data-delay='50' data-tooltip='Monitorar Setores' onclick='callData("monitorar", "setor")'><i class='fa fa-cubes'></i></a></li>
+				<li><a href='#!' class='tooltipped btn-floating amber darken-2 white-text' data-position='left' data-delay='50' data-tooltip='Monitorar Setores' onclick='callData("monitorar", "setor")'><i class='fa fa-pie-chart'></i></a></li>
+				<li><a href='#!' class='tooltipped btn-floating red darken-3 white-text' data-position='left' data-delay='50' data-tooltip='Sair' onclick='logoff()'><i class='fa fa-sign-out'></i></a></li>
+				<!--
 				<li><a href='#!' class='tooltipped btn-floating green darken-2 white-text' data-position='left' data-delay='50' data-tooltip='Monitorar Ciclos' onclick='callData("monitorar", "ciclo")'><i class='fa fa-calendar'></i></a></li>
+				-->
 			</ul>
 		</div>
 		<!--Float Button.END-->
